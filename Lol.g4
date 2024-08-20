@@ -1,13 +1,20 @@
 grammar Lol;
 
-prog: (varDeclaration | varAssignment | expr)+ EOF;
+prog: statements+ EOF;
+
+statements: varDeclaration | varAssignment | ifStatement | expr;
 
 varDeclaration: 'var' ID | 'var' ID '=' expr;
 varAssignment: ID '=' expr;
 
+ifStatement: 'if' '(' expr ')' '{' statements+ '}';
+
+comparisonOperator: '==' | '!=' | '<' | '>' | '<=' | '>=';
+
 expr:
 	expr ('*' | '/') expr /* Precedence 1 */
 	| expr ('+' | '-') expr
+	| expr comparisonOperator expr
 	| '(' expr ')'
 	| FLOAT
 	| ID;

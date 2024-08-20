@@ -5,6 +5,7 @@ import LolParser, {
   ExprContext,
   VarDeclarationContext,
   VarAssignmentContext,
+  IfStatementContext,
 } from "./gen/LolParser.ts";
 import LolListener from "./gen/LolListener.ts";
 
@@ -33,6 +34,12 @@ class LolTreeWalker extends LolListener {
     this.instructions.push(`(local.set $${ctx.ID().getText()} ${expr})`);
   };
 
+  exitIfStatement = (_ctx: IfStatementContext) => {
+    const condition = this.exprStack.pop();
+    const then = this.instructions.pop();
+    this.instructions.push(`(if ${condition} (then ${then}))`);
+  };
+
   exitExpr = (ctx: ExprContext) => {
     if (ctx.FLOAT()) {
       this.exprStack.push(`(f32.const ${ctx.FLOAT().getText()})`);
@@ -55,6 +62,24 @@ class LolTreeWalker extends LolListener {
           break;
         case "/":
           instruction = "f32.div";
+          break;
+        case "<":
+          instruction = "f32.lt";
+          break;
+        case ">":
+          instruction = "f32.gt";
+          break;
+        case "<=":
+          instruction = "f32.le";
+          break;
+        case ">=":
+          instruction = "f32.ge";
+          break;
+        case "==":
+          instruction = "f32.eq";
+          break;
+        case "!=":
+          instruction = "f32.ne";
           break;
         default:
           throw new Error(`Unknown operator: ${op}`);
