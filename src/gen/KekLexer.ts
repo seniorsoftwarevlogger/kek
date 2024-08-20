@@ -1,4 +1,4 @@
-// Generated from Lol.g4 by ANTLR 4.13.2
+// Generated from Kek.g4 by ANTLR 4.13.2
 // noinspection ES6UnusedImports,JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 import {
 	ATN,
@@ -11,7 +11,7 @@ import {
 	PredictionContextCache,
 	Token
 } from "antlr4";
-export default class LolLexer extends Lexer {
+export default class KekLexer extends Lexer {
 	public static readonly T__0 = 1;
 	public static readonly T__1 = 2;
 	public static readonly T__2 = 3;
@@ -78,20 +78,20 @@ export default class LolLexer extends Lexer {
 
 	constructor(input: CharStream) {
 		super(input);
-		this._interp = new LexerATNSimulator(this, LolLexer._ATN, LolLexer.DecisionsToDFA, new PredictionContextCache());
+		this._interp = new LexerATNSimulator(this, KekLexer._ATN, KekLexer.DecisionsToDFA, new PredictionContextCache());
 	}
 
-	public get grammarFileName(): string { return "Lol.g4"; }
+	public get grammarFileName(): string { return "Kek.g4"; }
 
-	public get literalNames(): (string | null)[] { return LolLexer.literalNames; }
-	public get symbolicNames(): (string | null)[] { return LolLexer.symbolicNames; }
-	public get ruleNames(): string[] { return LolLexer.ruleNames; }
+	public get literalNames(): (string | null)[] { return KekLexer.literalNames; }
+	public get symbolicNames(): (string | null)[] { return KekLexer.symbolicNames; }
+	public get ruleNames(): string[] { return KekLexer.ruleNames; }
 
-	public get serializedATN(): number[] { return LolLexer._serializedATN; }
+	public get serializedATN(): number[] { return KekLexer._serializedATN; }
 
-	public get channelNames(): string[] { return LolLexer.channelNames; }
+	public get channelNames(): string[] { return KekLexer.channelNames; }
 
-	public get modeNames(): string[] { return LolLexer.modeNames; }
+	public get modeNames(): string[] { return KekLexer.modeNames; }
 
 	public static readonly _serializedATN: number[] = [4,0,26,161,6,-1,2,0,
 	7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,
@@ -147,13 +147,13 @@ export default class LolLexer extends Lexer {
 
 	private static __ATN: ATN;
 	public static get _ATN(): ATN {
-		if (!LolLexer.__ATN) {
-			LolLexer.__ATN = new ATNDeserializer().deserialize(LolLexer._serializedATN);
+		if (!KekLexer.__ATN) {
+			KekLexer.__ATN = new ATNDeserializer().deserialize(KekLexer._serializedATN);
 		}
 
-		return LolLexer.__ATN;
+		return KekLexer.__ATN;
 	}
 
 
-	static DecisionsToDFA = LolLexer._ATN.decisionToState.map( (ds: DecisionState, index: number) => new DFA(ds, index) );
+	static DecisionsToDFA = KekLexer._ATN.decisionToState.map( (ds: DecisionState, index: number) => new DFA(ds, index) );
 }

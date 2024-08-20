@@ -1,6 +1,6 @@
 import wabt from "wabt";
 import { formatWat } from "./src/lib/watFormat.ts";
-import compile from "./src/LolWAT.ts";
+import compile from "./src/KekWAT.ts";
 
 async function compileAndRunWasm(watCode: string): Promise<number> {
   const wabtModule = await wabt();

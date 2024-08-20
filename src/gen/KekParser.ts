@@ -1,4 +1,4 @@
-// Generated from Lol.g4 by ANTLR 4.13.2
+// Generated from Kek.g4 by ANTLR 4.13.2
 // noinspection ES6UnusedImports,JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 
 import {
@@ -11,12 +11,12 @@ import {
 	Token, TokenStream,
 	Interval, IntervalSet
 } from 'antlr4';
-import LolListener from "./LolListener.js";
+import KekListener from "./KekListener.js";
 // for running tests with parameters, TODO: discuss strategy for typed parameters in CI
 // eslint-disable-next-line no-unused-vars
 type int = number;
 
-export default class LolParser extends Parser {
+export default class KekParser extends Parser {
 	public static readonly T__0 = 1;
 	public static readonly T__1 = 2;
 	public static readonly T__2 = 3;
@@ -88,11 +88,11 @@ export default class LolParser extends Parser {
 		"whileStatement", "functionDeclaration", "functionCall", "block", "comparisonOperator", 
 		"returnStatement", "expr",
 	];
-	public get grammarFileName(): string { return "Lol.g4"; }
-	public get literalNames(): (string | null)[] { return LolParser.literalNames; }
-	public get symbolicNames(): (string | null)[] { return LolParser.symbolicNames; }
-	public get ruleNames(): string[] { return LolParser.ruleNames; }
-	public get serializedATN(): number[] { return LolParser._serializedATN; }
+	public get grammarFileName(): string { return "Kek.g4"; }
+	public get literalNames(): (string | null)[] { return KekParser.literalNames; }
+	public get symbolicNames(): (string | null)[] { return KekParser.symbolicNames; }
+	public get ruleNames(): string[] { return KekParser.ruleNames; }
+	public get serializedATN(): number[] { return KekParser._serializedATN; }
 
 	protected createFailedPredicateException(predicate?: string, message?: string): FailedPredicateException {
 		return new FailedPredicateException(this, predicate, message);
@@ -100,12 +100,12 @@ export default class LolParser extends Parser {
 
 	constructor(input: TokenStream) {
 		super(input);
-		this._interp = new ParserATNSimulator(this, LolParser._ATN, LolParser.DecisionsToDFA, new PredictionContextCache());
+		this._interp = new ParserATNSimulator(this, KekParser._ATN, KekParser.DecisionsToDFA, new PredictionContextCache());
 	}
 	// @RuleVersion(0)
 	public prog(): ProgContext {
 		let localctx: ProgContext = new ProgContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 0, LolParser.RULE_prog);
+		this.enterRule(localctx, 0, KekParser.RULE_prog);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
@@ -125,7 +125,7 @@ export default class LolParser extends Parser {
 				_la = this._input.LA(1);
 			} while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 25428378) !== 0));
 			this.state = 29;
-			this.match(LolParser.EOF);
+			this.match(KekParser.EOF);
 			}
 		}
 		catch (re) {
@@ -145,7 +145,7 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public statement(): StatementContext {
 		let localctx: StatementContext = new StatementContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 2, LolParser.RULE_statement);
+		this.enterRule(localctx, 2, KekParser.RULE_statement);
 		try {
 			this.state = 38;
 			this._errHandler.sync(this);
@@ -218,22 +218,22 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public varDeclaration(): VarDeclarationContext {
 		let localctx: VarDeclarationContext = new VarDeclarationContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 4, LolParser.RULE_varDeclaration);
+		this.enterRule(localctx, 4, KekParser.RULE_varDeclaration);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 40;
-			this.match(LolParser.T__0);
+			this.match(KekParser.T__0);
 			this.state = 41;
-			this.match(LolParser.ID);
+			this.match(KekParser.ID);
 			this.state = 44;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===2) {
 				{
 				this.state = 42;
-				this.match(LolParser.T__1);
+				this.match(KekParser.T__1);
 				this.state = 43;
 				this.expr(0);
 				}
@@ -258,14 +258,14 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public varAssignment(): VarAssignmentContext {
 		let localctx: VarAssignmentContext = new VarAssignmentContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 6, LolParser.RULE_varAssignment);
+		this.enterRule(localctx, 6, KekParser.RULE_varAssignment);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 46;
-			this.match(LolParser.ID);
+			this.match(KekParser.ID);
 			this.state = 47;
-			this.match(LolParser.T__1);
+			this.match(KekParser.T__1);
 			this.state = 48;
 			this.expr(0);
 			}
@@ -287,19 +287,19 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public ifStatement(): IfStatementContext {
 		let localctx: IfStatementContext = new IfStatementContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 8, LolParser.RULE_ifStatement);
+		this.enterRule(localctx, 8, KekParser.RULE_ifStatement);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 50;
-			this.match(LolParser.T__2);
+			this.match(KekParser.T__2);
 			this.state = 51;
-			this.match(LolParser.T__3);
+			this.match(KekParser.T__3);
 			this.state = 52;
 			this.expr(0);
 			this.state = 53;
-			this.match(LolParser.T__4);
+			this.match(KekParser.T__4);
 			this.state = 54;
 			this.block();
 			this.state = 60;
@@ -308,7 +308,7 @@ export default class LolParser extends Parser {
 			if (_la===6) {
 				{
 				this.state = 55;
-				this.match(LolParser.T__5);
+				this.match(KekParser.T__5);
 				this.state = 58;
 				this._errHandler.sync(this);
 				switch (this._input.LA(1)) {
@@ -349,18 +349,18 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public whileStatement(): WhileStatementContext {
 		let localctx: WhileStatementContext = new WhileStatementContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 10, LolParser.RULE_whileStatement);
+		this.enterRule(localctx, 10, KekParser.RULE_whileStatement);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 62;
-			this.match(LolParser.T__6);
+			this.match(KekParser.T__6);
 			this.state = 63;
-			this.match(LolParser.T__3);
+			this.match(KekParser.T__3);
 			this.state = 64;
 			this.expr(0);
 			this.state = 65;
-			this.match(LolParser.T__4);
+			this.match(KekParser.T__4);
 			this.state = 66;
 			this.block();
 			}
@@ -382,24 +382,24 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public functionDeclaration(): FunctionDeclarationContext {
 		let localctx: FunctionDeclarationContext = new FunctionDeclarationContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 12, LolParser.RULE_functionDeclaration);
+		this.enterRule(localctx, 12, KekParser.RULE_functionDeclaration);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 68;
-			this.match(LolParser.T__7);
+			this.match(KekParser.T__7);
 			this.state = 69;
-			this.match(LolParser.ID);
+			this.match(KekParser.ID);
 			this.state = 70;
-			this.match(LolParser.T__3);
+			this.match(KekParser.T__3);
 			this.state = 79;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===23) {
 				{
 				this.state = 71;
-				this.match(LolParser.ID);
+				this.match(KekParser.ID);
 				this.state = 76;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
@@ -407,9 +407,9 @@ export default class LolParser extends Parser {
 					{
 					{
 					this.state = 72;
-					this.match(LolParser.T__8);
+					this.match(KekParser.T__8);
 					this.state = 73;
-					this.match(LolParser.ID);
+					this.match(KekParser.ID);
 					}
 					}
 					this.state = 78;
@@ -420,7 +420,7 @@ export default class LolParser extends Parser {
 			}
 
 			this.state = 81;
-			this.match(LolParser.T__4);
+			this.match(KekParser.T__4);
 			this.state = 82;
 			this.block();
 			}
@@ -442,15 +442,15 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public functionCall(): FunctionCallContext {
 		let localctx: FunctionCallContext = new FunctionCallContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 14, LolParser.RULE_functionCall);
+		this.enterRule(localctx, 14, KekParser.RULE_functionCall);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 84;
-			this.match(LolParser.ID);
+			this.match(KekParser.ID);
 			this.state = 85;
-			this.match(LolParser.T__3);
+			this.match(KekParser.T__3);
 			this.state = 94;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
@@ -465,7 +465,7 @@ export default class LolParser extends Parser {
 					{
 					{
 					this.state = 87;
-					this.match(LolParser.T__8);
+					this.match(KekParser.T__8);
 					this.state = 88;
 					this.expr(0);
 					}
@@ -478,7 +478,7 @@ export default class LolParser extends Parser {
 			}
 
 			this.state = 96;
-			this.match(LolParser.T__4);
+			this.match(KekParser.T__4);
 			}
 		}
 		catch (re) {
@@ -498,13 +498,13 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public block(): BlockContext {
 		let localctx: BlockContext = new BlockContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 16, LolParser.RULE_block);
+		this.enterRule(localctx, 16, KekParser.RULE_block);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 98;
-			this.match(LolParser.T__9);
+			this.match(KekParser.T__9);
 			this.state = 100;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
@@ -520,7 +520,7 @@ export default class LolParser extends Parser {
 				_la = this._input.LA(1);
 			} while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 25428378) !== 0));
 			this.state = 104;
-			this.match(LolParser.T__10);
+			this.match(KekParser.T__10);
 			}
 		}
 		catch (re) {
@@ -540,7 +540,7 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public comparisonOperator(): ComparisonOperatorContext {
 		let localctx: ComparisonOperatorContext = new ComparisonOperatorContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 18, LolParser.RULE_comparisonOperator);
+		this.enterRule(localctx, 18, KekParser.RULE_comparisonOperator);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
@@ -573,12 +573,12 @@ export default class LolParser extends Parser {
 	// @RuleVersion(0)
 	public returnStatement(): ReturnStatementContext {
 		let localctx: ReturnStatementContext = new ReturnStatementContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 20, LolParser.RULE_returnStatement);
+		this.enterRule(localctx, 20, KekParser.RULE_returnStatement);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
 			this.state = 108;
-			this.match(LolParser.T__17);
+			this.match(KekParser.T__17);
 			this.state = 110;
 			this._errHandler.sync(this);
 			switch ( this._interp.adaptivePredict(this._input, 10, this._ctx) ) {
@@ -619,7 +619,7 @@ export default class LolParser extends Parser {
 		let localctx: ExprContext = new ExprContext(this, this._ctx, _parentState);
 		let _prevctx: ExprContext = localctx;
 		let _startState: number = 22;
-		this.enterRecursionRule(localctx, 22, LolParser.RULE_expr, _p);
+		this.enterRecursionRule(localctx, 22, KekParser.RULE_expr, _p);
 		let _la: number;
 		try {
 			let _alt: number;
@@ -631,11 +631,11 @@ export default class LolParser extends Parser {
 			case 1:
 				{
 				this.state = 113;
-				this.match(LolParser.T__3);
+				this.match(KekParser.T__3);
 				this.state = 114;
 				this.expr(0);
 				this.state = 115;
-				this.match(LolParser.T__4);
+				this.match(KekParser.T__4);
 				}
 				break;
 			case 2:
@@ -647,13 +647,13 @@ export default class LolParser extends Parser {
 			case 3:
 				{
 				this.state = 118;
-				this.match(LolParser.FLOAT);
+				this.match(KekParser.FLOAT);
 				}
 				break;
 			case 4:
 				{
 				this.state = 119;
-				this.match(LolParser.ID);
+				this.match(KekParser.ID);
 				}
 				break;
 			}
@@ -674,7 +674,7 @@ export default class LolParser extends Parser {
 					case 1:
 						{
 						localctx = new ExprContext(this, _parentctx, _parentState);
-						this.pushNewRecursionContext(localctx, _startState, LolParser.RULE_expr);
+						this.pushNewRecursionContext(localctx, _startState, KekParser.RULE_expr);
 						this.state = 122;
 						if (!(this.precpred(this._ctx, 7))) {
 							throw this.createFailedPredicateException("this.precpred(this._ctx, 7)");
@@ -695,7 +695,7 @@ export default class LolParser extends Parser {
 					case 2:
 						{
 						localctx = new ExprContext(this, _parentctx, _parentState);
-						this.pushNewRecursionContext(localctx, _startState, LolParser.RULE_expr);
+						this.pushNewRecursionContext(localctx, _startState, KekParser.RULE_expr);
 						this.state = 125;
 						if (!(this.precpred(this._ctx, 6))) {
 							throw this.createFailedPredicateException("this.precpred(this._ctx, 6)");
@@ -716,7 +716,7 @@ export default class LolParser extends Parser {
 					case 3:
 						{
 						localctx = new ExprContext(this, _parentctx, _parentState);
-						this.pushNewRecursionContext(localctx, _startState, LolParser.RULE_expr);
+						this.pushNewRecursionContext(localctx, _startState, KekParser.RULE_expr);
 						this.state = 128;
 						if (!(this.precpred(this._ctx, 5))) {
 							throw this.createFailedPredicateException("this.precpred(this._ctx, 5)");
@@ -816,25 +816,25 @@ export default class LolParser extends Parser {
 
 	private static __ATN: ATN;
 	public static get _ATN(): ATN {
-		if (!LolParser.__ATN) {
-			LolParser.__ATN = new ATNDeserializer().deserialize(LolParser._serializedATN);
+		if (!KekParser.__ATN) {
+			KekParser.__ATN = new ATNDeserializer().deserialize(KekParser._serializedATN);
 		}
 
-		return LolParser.__ATN;
+		return KekParser.__ATN;
 	}
 
 
-	static DecisionsToDFA = LolParser._ATN.decisionToState.map( (ds: DecisionState, index: number) => new DFA(ds, index) );
+	static DecisionsToDFA = KekParser._ATN.decisionToState.map( (ds: DecisionState, index: number) => new DFA(ds, index) );
 
 }
 
 export class ProgContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
 	public EOF(): TerminalNode {
-		return this.getToken(LolParser.EOF, 0);
+		return this.getToken(KekParser.EOF, 0);
 	}
 	public statement_list(): StatementContext[] {
 		return this.getTypedRuleContexts(StatementContext) as StatementContext[];
@@ -843,14 +843,14 @@ export class ProgContext extends ParserRuleContext {
 		return this.getTypedRuleContext(StatementContext, i) as StatementContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_prog;
+    	return KekParser.RULE_prog;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterProg) {
 	 		listener.enterProg(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitProg) {
 	 		listener.exitProg(this);
 		}
@@ -859,7 +859,7 @@ export class ProgContext extends ParserRuleContext {
 
 
 export class StatementContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
@@ -885,14 +885,14 @@ export class StatementContext extends ParserRuleContext {
 		return this.getTypedRuleContext(ExprContext, 0) as ExprContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_statement;
+    	return KekParser.RULE_statement;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterStatement) {
 	 		listener.enterStatement(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitStatement) {
 	 		listener.exitStatement(this);
 		}
@@ -901,25 +901,25 @@ export class StatementContext extends ParserRuleContext {
 
 
 export class VarDeclarationContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
 	public ID(): TerminalNode {
-		return this.getToken(LolParser.ID, 0);
+		return this.getToken(KekParser.ID, 0);
 	}
 	public expr(): ExprContext {
 		return this.getTypedRuleContext(ExprContext, 0) as ExprContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_varDeclaration;
+    	return KekParser.RULE_varDeclaration;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterVarDeclaration) {
 	 		listener.enterVarDeclaration(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitVarDeclaration) {
 	 		listener.exitVarDeclaration(this);
 		}
@@ -928,25 +928,25 @@ export class VarDeclarationContext extends ParserRuleContext {
 
 
 export class VarAssignmentContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
 	public ID(): TerminalNode {
-		return this.getToken(LolParser.ID, 0);
+		return this.getToken(KekParser.ID, 0);
 	}
 	public expr(): ExprContext {
 		return this.getTypedRuleContext(ExprContext, 0) as ExprContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_varAssignment;
+    	return KekParser.RULE_varAssignment;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterVarAssignment) {
 	 		listener.enterVarAssignment(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitVarAssignment) {
 	 		listener.exitVarAssignment(this);
 		}
@@ -955,7 +955,7 @@ export class VarAssignmentContext extends ParserRuleContext {
 
 
 export class IfStatementContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
@@ -972,14 +972,14 @@ export class IfStatementContext extends ParserRuleContext {
 		return this.getTypedRuleContext(IfStatementContext, 0) as IfStatementContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_ifStatement;
+    	return KekParser.RULE_ifStatement;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterIfStatement) {
 	 		listener.enterIfStatement(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitIfStatement) {
 	 		listener.exitIfStatement(this);
 		}
@@ -988,7 +988,7 @@ export class IfStatementContext extends ParserRuleContext {
 
 
 export class WhileStatementContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
@@ -999,14 +999,14 @@ export class WhileStatementContext extends ParserRuleContext {
 		return this.getTypedRuleContext(BlockContext, 0) as BlockContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_whileStatement;
+    	return KekParser.RULE_whileStatement;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterWhileStatement) {
 	 		listener.enterWhileStatement(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitWhileStatement) {
 	 		listener.exitWhileStatement(this);
 		}
@@ -1015,28 +1015,28 @@ export class WhileStatementContext extends ParserRuleContext {
 
 
 export class FunctionDeclarationContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
 	public ID_list(): TerminalNode[] {
-	    	return this.getTokens(LolParser.ID);
+	    	return this.getTokens(KekParser.ID);
 	}
 	public ID(i: number): TerminalNode {
-		return this.getToken(LolParser.ID, i);
+		return this.getToken(KekParser.ID, i);
 	}
 	public block(): BlockContext {
 		return this.getTypedRuleContext(BlockContext, 0) as BlockContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_functionDeclaration;
+    	return KekParser.RULE_functionDeclaration;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterFunctionDeclaration) {
 	 		listener.enterFunctionDeclaration(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitFunctionDeclaration) {
 	 		listener.exitFunctionDeclaration(this);
 		}
@@ -1045,12 +1045,12 @@ export class FunctionDeclarationContext extends ParserRuleContext {
 
 
 export class FunctionCallContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
 	public ID(): TerminalNode {
-		return this.getToken(LolParser.ID, 0);
+		return this.getToken(KekParser.ID, 0);
 	}
 	public expr_list(): ExprContext[] {
 		return this.getTypedRuleContexts(ExprContext) as ExprContext[];
@@ -1059,14 +1059,14 @@ export class FunctionCallContext extends ParserRuleContext {
 		return this.getTypedRuleContext(ExprContext, i) as ExprContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_functionCall;
+    	return KekParser.RULE_functionCall;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterFunctionCall) {
 	 		listener.enterFunctionCall(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitFunctionCall) {
 	 		listener.exitFunctionCall(this);
 		}
@@ -1075,7 +1075,7 @@ export class FunctionCallContext extends ParserRuleContext {
 
 
 export class BlockContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
@@ -1086,14 +1086,14 @@ export class BlockContext extends ParserRuleContext {
 		return this.getTypedRuleContext(StatementContext, i) as StatementContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_block;
+    	return KekParser.RULE_block;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterBlock) {
 	 		listener.enterBlock(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitBlock) {
 	 		listener.exitBlock(this);
 		}
@@ -1102,19 +1102,19 @@ export class BlockContext extends ParserRuleContext {
 
 
 export class ComparisonOperatorContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_comparisonOperator;
+    	return KekParser.RULE_comparisonOperator;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterComparisonOperator) {
 	 		listener.enterComparisonOperator(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitComparisonOperator) {
 	 		listener.exitComparisonOperator(this);
 		}
@@ -1123,7 +1123,7 @@ export class ComparisonOperatorContext extends ParserRuleContext {
 
 
 export class ReturnStatementContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
@@ -1131,14 +1131,14 @@ export class ReturnStatementContext extends ParserRuleContext {
 		return this.getTypedRuleContext(ExprContext, 0) as ExprContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_returnStatement;
+    	return KekParser.RULE_returnStatement;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterReturnStatement) {
 	 		listener.enterReturnStatement(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitReturnStatement) {
 	 		listener.exitReturnStatement(this);
 		}
@@ -1147,7 +1147,7 @@ export class ReturnStatementContext extends ParserRuleContext {
 
 
 export class ExprContext extends ParserRuleContext {
-	constructor(parser?: LolParser, parent?: ParserRuleContext, invokingState?: number) {
+	constructor(parser?: KekParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
@@ -1161,23 +1161,23 @@ export class ExprContext extends ParserRuleContext {
 		return this.getTypedRuleContext(FunctionCallContext, 0) as FunctionCallContext;
 	}
 	public FLOAT(): TerminalNode {
-		return this.getToken(LolParser.FLOAT, 0);
+		return this.getToken(KekParser.FLOAT, 0);
 	}
 	public ID(): TerminalNode {
-		return this.getToken(LolParser.ID, 0);
+		return this.getToken(KekParser.ID, 0);
 	}
 	public comparisonOperator(): ComparisonOperatorContext {
 		return this.getTypedRuleContext(ComparisonOperatorContext, 0) as ComparisonOperatorContext;
 	}
     public get ruleIndex(): number {
-    	return LolParser.RULE_expr;
+    	return KekParser.RULE_expr;
 	}
-	public enterRule(listener: LolListener): void {
+	public enterRule(listener: KekListener): void {
 	    if(listener.enterExpr) {
 	 		listener.enterExpr(this);
 		}
 	}
-	public exitRule(listener: LolListener): void {
+	public exitRule(listener: KekListener): void {
 	    if(listener.exitExpr) {
 	 		listener.exitExpr(this);
 		}

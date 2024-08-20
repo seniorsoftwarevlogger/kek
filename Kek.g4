@@ -1,4 +1,4 @@
-grammar Lol;
+grammar Kek;
 
 options {
 	language = TypeScript;

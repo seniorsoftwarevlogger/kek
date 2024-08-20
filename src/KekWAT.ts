@@ -1,6 +1,6 @@
 import { CharStream, CommonTokenStream, ParseTreeWalker } from "antlr4";
-import LolLexer from "./gen/LolLexer.ts";
-import LolParser, {
+import KekLexer from "./gen/KekLexer.ts";
+import KekParser, {
   ProgContext,
   ExprContext,
   VarDeclarationContext,
@@ -10,10 +10,10 @@ import LolParser, {
   FunctionDeclarationContext,
   FunctionCallContext,
   ReturnStatementContext,
-} from "./gen/LolParser.ts";
-import LolListener from "./gen/LolListener.ts";
+} from "./gen/KekParser.ts";
+import KekListener from "./gen/KekListener.ts";
 
-class LolTreeWalker extends LolListener {
+class KekTreeWalker extends KekListener {
   private output: string = "";
   private locals: { [key: string]: string[] } = { "~global": [] };
   private currentFunction: string = "~global";
@@ -178,12 +178,12 @@ class LolTreeWalker extends LolListener {
 
 export default function compile(input: string): string {
   const chars = new CharStream(input);
-  const lexer = new LolLexer(chars);
+  const lexer = new KekLexer(chars);
   const tokens = new CommonTokenStream(lexer);
-  const parser = new LolParser(tokens);
+  const parser = new KekParser(tokens);
   const tree = parser.prog();
 
-  const walker = new LolTreeWalker();
+  const walker = new KekTreeWalker();
   ParseTreeWalker.DEFAULT.walk(walker, tree);
 
   return walker.getResult();

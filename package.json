@@ -5,7 +5,8 @@
   "scripts": {
     "watch": "deno run -A --unstable-sloppy-imports --watch index.ts",
     "once": "deno run -A --unstable-sloppy-imports index.ts",
-    "gen": "antlr4 -Dlanguage=TypeScript -o src/gen Lol.g4"
+    "gen": "antlr4 -Dlanguage=TypeScript -o src/gen Kek.g4",
+    "compile": "deno run -A --unstable-sloppy-imports compile.ts"
   },
   "author": "",
   "license": "ISC",
