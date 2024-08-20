@@ -8,6 +8,7 @@ import { StatementsContext } from "./LolParser.js";
 import { VarDeclarationContext } from "./LolParser.js";
 import { VarAssignmentContext } from "./LolParser.js";
 import { IfStatementContext } from "./LolParser.js";
+import { WhileStatementContext } from "./LolParser.js";
 import { ComparisonOperatorContext } from "./LolParser.js";
 import { ExprContext } from "./LolParser.js";
 
@@ -67,6 +68,16 @@ export default class LolListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitIfStatement?: (ctx: IfStatementContext) => void;
+	/**
+	 * Enter a parse tree produced by `LolParser.whileStatement`.
+	 * @param ctx the parse tree
+	 */
+	enterWhileStatement?: (ctx: WhileStatementContext) => void;
+	/**
+	 * Exit a parse tree produced by `LolParser.whileStatement`.
+	 * @param ctx the parse tree
+	 */
+	exitWhileStatement?: (ctx: WhileStatementContext) => void;
 	/**
 	 * Enter a parse tree produced by `LolParser.comparisonOperator`.
 	 * @param ctx the parse tree

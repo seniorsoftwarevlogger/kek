@@ -1,13 +1,23 @@
 grammar Lol;
 
+options {
+	language = TypeScript;
+}
+
 prog: statements+ EOF;
 
-statements: varDeclaration | varAssignment | ifStatement | expr;
+statements:
+	varDeclaration
+	| varAssignment
+	| ifStatement
+	| whileStatement
+	| expr;
 
 varDeclaration: 'var' ID | 'var' ID '=' expr;
 varAssignment: ID '=' expr;
 
 ifStatement: 'if' '(' expr ')' '{' statements+ '}';
+whileStatement: 'while' '(' expr ')' '{' statements+ '}';
 
 comparisonOperator: '==' | '!=' | '<' | '>' | '<=' | '>=';
 

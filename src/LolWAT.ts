@@ -6,6 +6,7 @@ import LolParser, {
   VarDeclarationContext,
   VarAssignmentContext,
   IfStatementContext,
+  WhileStatementContext,
 } from "./gen/LolParser.ts";
 import LolListener from "./gen/LolListener.ts";
 
@@ -14,6 +15,7 @@ class LolTreeWalker extends LolListener {
   private locals: string[] = [];
   private instructions: string[] = [];
   private exprStack: string[] = [];
+  private blockStack: string[][] = [];
 
   enterProg = (_ctx: ProgContext) => {
     this.output = `(module (func $program (export "program") (result f32)\n`;
@@ -34,10 +36,28 @@ class LolTreeWalker extends LolListener {
     this.instructions.push(`(local.set $${ctx.ID().getText()} ${expr})`);
   };
 
+  enterIfStatement = (_ctx: IfStatementContext) => {
+    this.blockStack.push(this.instructions);
+    this.instructions = [];
+  };
+
   exitIfStatement = (_ctx: IfStatementContext) => {
     const condition = this.exprStack.pop();
-    const then = this.instructions.pop();
-    this.instructions.push(`(if ${condition} (then ${then}))`);
+    const thenBlock = this.instructions.join(" ");
+    this.instructions = this.blockStack.pop()!;
+    this.instructions.push(`(if ${condition} (then ${thenBlock}))`);
+  };
+
+  enterWhileStatement = (_ctx: WhileStatementContext) => {
+    this.blockStack.push(this.instructions);
+    this.instructions = [];
+  };
+
+  exitWhileStatement = (_ctx: WhileStatementContext) => {
+    const condition = this.exprStack.pop();
+    const bodyBlock = this.instructions.join(" ");
+    this.instructions = this.blockStack.pop()!;
+    this.instructions.push(`(loop ${bodyBlock} (br_if 0 ${condition}))`);
   };
 
   exitExpr = (ctx: ExprContext) => {

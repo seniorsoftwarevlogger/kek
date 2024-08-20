@@ -1,4 +1,4 @@
-import compile from "./src/LolCompile.ts";
+import compile from "./src/LolWAT.ts";
 import wabt from "wabt";
 
 async function compileAndRunWasm(watCode: string): Promise<number> {
@@ -12,15 +12,15 @@ async function compileAndRunWasm(watCode: string): Promise<number> {
 }
 
 const input = `
-var x
-var y = 4
-x = 2 + 1
+var num = 1
+var n = 6
 
-if (x > 2) {
-  y = 5
+while( n >= 1 ) {
+  num = num * n
+  n = n - 1
 }
 
-2 * (x + y) - 5 / (1 + 1) + 10.5
+num
 `;
 
 const watCode = compile(input);
