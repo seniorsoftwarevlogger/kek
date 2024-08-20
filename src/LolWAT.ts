@@ -7,23 +7,30 @@ import LolParser, {
   VarAssignmentContext,
   IfStatementContext,
   WhileStatementContext,
+  FunctionDeclarationContext,
+  FunctionCallContext,
+  ReturnExprContext,
 } from "./gen/LolParser.ts";
 import LolListener from "./gen/LolListener.ts";
 
 class LolTreeWalker extends LolListener {
   private output: string = "";
-  private locals: string[] = [];
+  private locals: { [key: string]: string[] } = { "~global": [] };
+  private currentFunction: string = "~global";
   private instructions: string[] = [];
+  private functions: string[] = [];
   private exprStack: string[] = [];
   private blockStack: string[][] = [];
 
-  enterProg = (_ctx: ProgContext) => {
-    this.output = `(module (func $program (export "program") (result f32)\n`;
+  enterProg = () => {
+    this.instructions = [];
   };
 
   exitVarDeclaration = (ctx: VarDeclarationContext) => {
     if (ctx.ID()) {
-      this.locals.push(`(local $${ctx.ID().getText()} f32)`);
+      this.locals[this.currentFunction].push(
+        `(local $${ctx.ID().getText()} f32)`
+      );
     }
     if (ctx.expr()) {
       const expr = this.exprStack.pop();
@@ -43,7 +50,7 @@ class LolTreeWalker extends LolListener {
 
   exitIfStatement = (_ctx: IfStatementContext) => {
     const condition = this.exprStack.pop();
-    const thenBlock = this.instructions.join(" ");
+    const thenBlock = this.instructions.join("\n");
     this.instructions = this.blockStack.pop()!;
     this.instructions.push(`(if ${condition} (then ${thenBlock}))`);
   };
@@ -55,9 +62,52 @@ class LolTreeWalker extends LolListener {
 
   exitWhileStatement = (_ctx: WhileStatementContext) => {
     const condition = this.exprStack.pop();
-    const bodyBlock = this.instructions.join(" ");
+    const bodyBlock = this.instructions.join("\n");
     this.instructions = this.blockStack.pop()!;
-    this.instructions.push(`(loop ${bodyBlock} (br_if 0 ${condition}))`);
+    this.instructions.push(`(loop\n${bodyBlock}\n(br_if 0 ${condition}))`);
+  };
+
+  enterFunctionDeclaration = (ctx: FunctionDeclarationContext) => {
+    this.blockStack.push(this.instructions);
+    this.instructions = [];
+    this.currentFunction = ctx.ID(0).getText();
+    this.locals[this.currentFunction] = [];
+  };
+
+  exitFunctionDeclaration = (ctx: FunctionDeclarationContext) => {
+    const functionName = ctx.ID(0).getText();
+    const locals = this.locals[this.currentFunction].join("\n");
+    const params = ctx
+      .ID_list()
+      .slice(1)
+      .map((id) => `(param $${id.getText()} f32)`)
+      .join(" ");
+
+    const bodyBlock = this.instructions.join("\n");
+
+    this.functions.push(
+      `(func $${functionName} ${params} (result f32)\n${locals}\n${bodyBlock})`
+    );
+
+    this.instructions = this.blockStack.pop()!;
+    this.currentFunction = "~global";
+  };
+
+  exitFunctionCall = (ctx: FunctionCallContext) => {
+    const functionName = ctx.ID().getText();
+    const args = ctx
+      .arg_list()
+      .map((arg) =>
+        arg.FLOAT()
+          ? `(f32.const ${arg.FLOAT().getText()})`
+          : `(local.get $${arg.ID().getText()})`
+      );
+    this.exprStack.push(`(call $${functionName} ${args.join(" ")})`);
+  };
+
+  exitReturnExpr = (_ctx: ReturnExprContext) => {
+    const expr = this.exprStack.pop();
+    this.instructions.push(`${expr}`);
   };
 
   exitExpr = (ctx: ExprContext) => {
@@ -109,12 +159,17 @@ class LolTreeWalker extends LolListener {
   };
 
   exitProg = (_ctx: ProgContext) => {
-    this.output += this.locals.join("\n") + "\n";
-    this.output += this.instructions.join("\n") + "\n";
-    if (this.exprStack.length > 0) {
-      this.output += this.exprStack.pop() + "\n";
-    }
-    this.output += "  )\n)";
+    this.output = [
+      `(module`,
+      this.functions.join("\n"),
+      `\n(func $main (export "main") (result f32)`,
+      this.locals["~global"].join("\n"),
+      this.instructions.join("\n"),
+      this.exprStack.join("\n"),
+      "))",
+    ]
+      .filter((s) => s !== "")
+      .join("\n");
   };
 
   getResult(): string {
