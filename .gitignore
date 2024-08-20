@@ -1,0 +1,8 @@
+.antlr
+.cache
+.env
+.git
+.idea
+.vscode
+node_modules
+.DS_Store

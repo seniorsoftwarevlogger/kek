@@ -1,0 +1,28 @@
+{
+  "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:antlr4@^4.13.2": "npm:antlr4@4.13.2",
+      "npm:wabt@^1.0.36": "npm:wabt@1.0.36"
+    },
+    "npm": {
+      "antlr4@4.13.2": {
+        "integrity": "sha512-QiVbZhyy4xAZ17UPEuG3YTOt8ZaoeOR1CvEAqrEsDBsOqINslaB147i9xqljZqoyf5S+EUlGStaj+t22LT9MOg==",
+        "dependencies": {}
+      },
+      "wabt@1.0.36": {
+        "integrity": "sha512-GAfEcFyvYRZ51xIZKeeCmIKytTz3ejCeEU9uevGNhEnqt9qXp3a8Q2O4ByZr6rKWcd8jV/Oj5cbDJFtmTYdchg==",
+        "dependencies": {}
+      }
+    }
+  },
+  "remote": {},
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:antlr4@^4.13.2",
+        "npm:wabt@^1.0.36"
+      ]
+    }
+  }
+}

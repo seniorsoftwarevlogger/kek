@@ -1,0 +1,17 @@
+{
+  "name": "wasm-lang",
+  "version": "1.0.0",
+  "main": "calc.js",
+  "scripts": {
+    "watch": "deno run -A --unstable-sloppy-imports --watch ./src/LolCompile.ts",
+    "once": "deno run --allow-read --unstable-sloppy-imports ./src/LolCompile.ts",
+    "gen": "antlr4 -Dlanguage=TypeScript -o src/gen Lol.g4"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "antlr4": "^4.13.2",
+    "wabt": "^1.0.36"
+  }
+}
