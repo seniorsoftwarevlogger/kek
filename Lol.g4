@@ -4,41 +4,43 @@ options {
 	language = TypeScript;
 }
 
-prog: statements+ EOF;
+prog: statement+ EOF;
 
-statements:
+statement:
 	varDeclaration
 	| varAssignment
 	| ifStatement
 	| whileStatement
 	| functionDeclaration
+	| returnStatement
 	| expr;
 
-varDeclaration: 'var' ID | 'var' ID '=' expr;
+varDeclaration: 'var' ID ('=' expr)?;
 varAssignment: ID '=' expr;
 
-ifStatement: 'if' '(' expr ')' '{' statements+ '}';
-
-whileStatement: 'while' '(' expr ')' '{' statements+ '}';
+ifStatement:
+	'if' '(' expr ')' block ('else' (ifStatement | block))?;
+whileStatement: 'while' '(' expr ')' block;
 
 functionDeclaration:
-	'function' ID '(' ID* ')' '{' statements+ '}';
-functionCall: ID '(' arg* ')';
+	'function' ID '(' (ID (',' ID)*)? ')' block;
+functionCall: ID '(' (expr (',' expr)*)? ')';
+
+block: '{' statement+ '}';
 
 comparisonOperator: '==' | '!=' | '<' | '>' | '<=' | '>=';
-returnExpr: 'return' expr;
+returnStatement: 'return' expr?;
 
 expr:
-	expr ('*' | '/') expr /* Precedence 1 */
+	expr ('*' | '/') expr
 	| expr ('+' | '-') expr
 	| expr comparisonOperator expr
 	| '(' expr ')'
 	| functionCall
-	| returnExpr
 	| FLOAT
 	| ID;
 
-arg: (ID | FLOAT);
 ID: [a-zA-Z_][a-zA-Z0-9_]*;
 FLOAT: [0-9]+ ('.' [0-9]+)?;
 WS: [ \t\r\n]+ -> skip;
+COMMENT: '//' ~[\r\n]* -> skip;

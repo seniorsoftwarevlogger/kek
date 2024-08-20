@@ -4,17 +4,17 @@ import {ParseTreeListener} from "antlr4";
 
 
 import { ProgContext } from "./LolParser.js";
-import { StatementsContext } from "./LolParser.js";
+import { StatementContext } from "./LolParser.js";
 import { VarDeclarationContext } from "./LolParser.js";
 import { VarAssignmentContext } from "./LolParser.js";
 import { IfStatementContext } from "./LolParser.js";
 import { WhileStatementContext } from "./LolParser.js";
 import { FunctionDeclarationContext } from "./LolParser.js";
 import { FunctionCallContext } from "./LolParser.js";
+import { BlockContext } from "./LolParser.js";
 import { ComparisonOperatorContext } from "./LolParser.js";
-import { ReturnExprContext } from "./LolParser.js";
+import { ReturnStatementContext } from "./LolParser.js";
 import { ExprContext } from "./LolParser.js";
-import { ArgContext } from "./LolParser.js";
 
 
 /**
@@ -33,15 +33,15 @@ export default class LolListener extends ParseTreeListener {
 	 */
 	exitProg?: (ctx: ProgContext) => void;
 	/**
-	 * Enter a parse tree produced by `LolParser.statements`.
+	 * Enter a parse tree produced by `LolParser.statement`.
 	 * @param ctx the parse tree
 	 */
-	enterStatements?: (ctx: StatementsContext) => void;
+	enterStatement?: (ctx: StatementContext) => void;
 	/**
-	 * Exit a parse tree produced by `LolParser.statements`.
+	 * Exit a parse tree produced by `LolParser.statement`.
 	 * @param ctx the parse tree
 	 */
-	exitStatements?: (ctx: StatementsContext) => void;
+	exitStatement?: (ctx: StatementContext) => void;
 	/**
 	 * Enter a parse tree produced by `LolParser.varDeclaration`.
 	 * @param ctx the parse tree
@@ -103,6 +103,16 @@ export default class LolListener extends ParseTreeListener {
 	 */
 	exitFunctionCall?: (ctx: FunctionCallContext) => void;
 	/**
+	 * Enter a parse tree produced by `LolParser.block`.
+	 * @param ctx the parse tree
+	 */
+	enterBlock?: (ctx: BlockContext) => void;
+	/**
+	 * Exit a parse tree produced by `LolParser.block`.
+	 * @param ctx the parse tree
+	 */
+	exitBlock?: (ctx: BlockContext) => void;
+	/**
 	 * Enter a parse tree produced by `LolParser.comparisonOperator`.
 	 * @param ctx the parse tree
 	 */
@@ -113,15 +123,15 @@ export default class LolListener extends ParseTreeListener {
 	 */
 	exitComparisonOperator?: (ctx: ComparisonOperatorContext) => void;
 	/**
-	 * Enter a parse tree produced by `LolParser.returnExpr`.
+	 * Enter a parse tree produced by `LolParser.returnStatement`.
 	 * @param ctx the parse tree
 	 */
-	enterReturnExpr?: (ctx: ReturnExprContext) => void;
+	enterReturnStatement?: (ctx: ReturnStatementContext) => void;
 	/**
-	 * Exit a parse tree produced by `LolParser.returnExpr`.
+	 * Exit a parse tree produced by `LolParser.returnStatement`.
 	 * @param ctx the parse tree
 	 */
-	exitReturnExpr?: (ctx: ReturnExprContext) => void;
+	exitReturnStatement?: (ctx: ReturnStatementContext) => void;
 	/**
 	 * Enter a parse tree produced by `LolParser.expr`.
 	 * @param ctx the parse tree
@@ -132,15 +142,5 @@ export default class LolListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitExpr?: (ctx: ExprContext) => void;
-	/**
-	 * Enter a parse tree produced by `LolParser.arg`.
-	 * @param ctx the parse tree
-	 */
-	enterArg?: (ctx: ArgContext) => void;
-	/**
-	 * Exit a parse tree produced by `LolParser.arg`.
-	 * @param ctx the parse tree
-	 */
-	exitArg?: (ctx: ArgContext) => void;
 }
 

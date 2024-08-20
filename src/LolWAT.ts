@@ -9,7 +9,7 @@ import LolParser, {
   WhileStatementContext,
   FunctionDeclarationContext,
   FunctionCallContext,
-  ReturnExprContext,
+  ReturnStatementContext,
 } from "./gen/LolParser.ts";
 import LolListener from "./gen/LolListener.ts";
 
@@ -95,17 +95,15 @@ class LolTreeWalker extends LolListener {
 
   exitFunctionCall = (ctx: FunctionCallContext) => {
     const functionName = ctx.ID().getText();
-    const args = ctx
-      .arg_list()
-      .map((arg) =>
-        arg.FLOAT()
-          ? `(f32.const ${arg.FLOAT().getText()})`
-          : `(local.get $${arg.ID().getText()})`
-      );
+    const argCount = ctx.expr_list().length;
+    const args = [];
+    for (let i = 0; i < argCount; i++) {
+      args.unshift(this.exprStack.pop());
+    }
     this.exprStack.push(`(call $${functionName} ${args.join(" ")})`);
   };
 
-  exitReturnExpr = (_ctx: ReturnExprContext) => {
+  exitReturnStatement = (_ctx: ReturnStatementContext) => {
     const expr = this.exprStack.pop();
     this.instructions.push(`${expr}`);
   };
@@ -166,6 +164,7 @@ class LolTreeWalker extends LolListener {
       this.locals["~global"].join("\n"),
       this.instructions.join("\n"),
       this.exprStack.join("\n"),
+      "return",
       "))",
     ]
       .filter((s) => s !== "")

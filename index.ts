@@ -13,6 +13,7 @@ async function compileAndRunWasm(watCode: string): Promise<number> {
 }
 
 const input = `
+// calculates factorial
 function factorial(n) {
   var num = 1
   var i = 1
@@ -25,14 +26,16 @@ function factorial(n) {
   return num
 }
 
+// returns 2
 function retrunTwo() {
   return 2
 }
 
-function test(res) {
+// tests if the result is equal to the expected value
+function test(res, expected) {
   var output = 0
 
-  if (res == 722) {
+  if (res == expected) {
     output = 1
   }
 
@@ -41,7 +44,7 @@ function test(res) {
 
 var result = factorial(6) + retrunTwo()
 
-test(result)
+test(result, 722)
 `;
 
 const watCode = compile(input);
