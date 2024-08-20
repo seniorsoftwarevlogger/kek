@@ -2,53 +2,50 @@ import { CharStream, CommonTokenStream, ParseTreeWalker } from "antlr4";
 import LolLexer from "./gen/LolLexer.ts";
 import LolParser, { ProgContext, ExprContext } from "./gen/LolParser.ts";
 import LolListener from "./gen/LolListener.ts";
-import wabt from "wabt";
-
-const input = ``;
-const chars = new CharStream(input);
-const lexer = new LolLexer(chars);
-const tokens = new CommonTokenStream(lexer);
-const parser = new LolParser(tokens);
-const tree = parser.prog();
 
 class LolTreeWalker extends LolListener {
   private output: string = "";
 
-  enterProg = (ctx: ProgContext) => {
-    this.output = `(module
-  `;
+  enterProg = (_ctx: ProgContext) => {
+    this.output = `(module (func $program (export "program") (result f32)\n`;
   };
 
-  exitProg = (ctx: ProgContext) => {
-    this.output += `(func $program (export "program")`;
-    this.output += `
-  )
+  exitExpr = (ctx: ExprContext) => {
+    if (ctx.FLOAT()) {
+      this.output += `f32.const ${ctx.FLOAT().getText()}\n`;
+    } else if (ctx.expr(1)) {
+      // if operator exists
+      const op = ctx.getChild(1).getText(); // get operator
+      switch (op) {
+        case "+":
+          this.output += `f32.add\n`;
+          break;
+        case "-":
+          this.output += `f32.sub\n`;
+          break;
+      }
+    }
+  };
+
+  exitProg = (_ctx: ProgContext) => {
+    this.output += `  )
 )`;
   };
-
-  exitExpr = (ctx: ExprContext) => {};
 
   getResult(): string {
     return this.output;
   }
 }
 
-const walker = new LolTreeWalker();
-ParseTreeWalker.DEFAULT.walk(walker, tree);
+export default function compile(input: string): string {
+  const chars = new CharStream(input);
+  const lexer = new LolLexer(chars);
+  const tokens = new CommonTokenStream(lexer);
+  const parser = new LolParser(tokens);
+  const tree = parser.prog();
 
-const watCode = walker.getResult();
-console.log(watCode);
+  const walker = new LolTreeWalker();
+  ParseTreeWalker.DEFAULT.walk(walker, tree);
 
-async function compileAndRunWasm(watCode: string): Promise<number> {
-  const wabtModule = await wabt();
-  const wasmModule = wabtModule.parseWat("inline", watCode);
-  const { buffer } = wasmModule.toBinary({});
-
-  const module = await WebAssembly.instantiate(buffer);
-  const result = (module.instance.exports.program as Function)();
-  return result;
+  return walker.getResult();
 }
-
-compileAndRunWasm(watCode)
-  .then((result) => console.log(`Result: ${result}`))
-  .catch((error) => console.error(`Error: ${error}`));
