@@ -4,6 +4,8 @@ import {ParseTreeListener} from "antlr4";
 
 
 import { ProgContext } from "./LolParser.js";
+import { VarDeclarationContext } from "./LolParser.js";
+import { VarAssignmentContext } from "./LolParser.js";
 import { ExprContext } from "./LolParser.js";
 
 
@@ -22,6 +24,26 @@ export default class LolListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitProg?: (ctx: ProgContext) => void;
+	/**
+	 * Enter a parse tree produced by `LolParser.varDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterVarDeclaration?: (ctx: VarDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `LolParser.varDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitVarDeclaration?: (ctx: VarDeclarationContext) => void;
+	/**
+	 * Enter a parse tree produced by `LolParser.varAssignment`.
+	 * @param ctx the parse tree
+	 */
+	enterVarAssignment?: (ctx: VarAssignmentContext) => void;
+	/**
+	 * Exit a parse tree produced by `LolParser.varAssignment`.
+	 * @param ctx the parse tree
+	 */
+	exitVarAssignment?: (ctx: VarAssignmentContext) => void;
 	/**
 	 * Enter a parse tree produced by `LolParser.expr`.
 	 * @param ctx the parse tree

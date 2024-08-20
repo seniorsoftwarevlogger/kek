@@ -11,8 +11,17 @@ async function compileAndRunWasm(watCode: string): Promise<number> {
   return result;
 }
 
-const input = `2 * (3 + 4) - 5 / (1 + 1) + 10.5`;
+const input = `
+var x
+var y = 4
+x = 2 + 1
+
+2 * (x + y) - 5 / (1 + 1) + 10.5
+`;
+
 const watCode = compile(input);
+
+console.log(watCode);
 
 compileAndRunWasm(watCode)
   .then((result) => console.log(`Result: ${result}`))
