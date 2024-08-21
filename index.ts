@@ -11,7 +11,7 @@ async function compileAndRunWasm(watCode: string): Promise<number> {
   return result;
 }
 
-const input = `1.3 + 2.2`;
+const input = `2 * (3 + 4) - 5 / (1 + 1) + 10.5`;
 const watCode = compile(input);
 
 compileAndRunWasm(watCode)

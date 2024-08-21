@@ -23,6 +23,12 @@ class LolTreeWalker extends LolListener {
         case "-":
           this.output += `f32.sub\n`;
           break;
+        case "*":
+          this.output += `f32.mul\n`;
+          break;
+        case "/":
+          this.output += `f32.div\n`;
+          break;
       }
     }
   };

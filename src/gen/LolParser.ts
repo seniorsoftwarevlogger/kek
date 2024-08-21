@@ -21,15 +21,19 @@ export default class LolParser extends Parser {
 	public static readonly T__1 = 2;
 	public static readonly T__2 = 3;
 	public static readonly T__3 = 4;
-	public static readonly FLOAT = 5;
-	public static readonly WS = 6;
+	public static readonly T__4 = 5;
+	public static readonly T__5 = 6;
+	public static readonly FLOAT = 7;
+	public static readonly WS = 8;
 	public static override readonly EOF = Token.EOF;
 	public static readonly RULE_prog = 0;
 	public static readonly RULE_expr = 1;
-	public static readonly literalNames: (string | null)[] = [ null, "'+'", 
+	public static readonly literalNames: (string | null)[] = [ null, "'*'", 
+                                                            "'/'", "'+'", 
                                                             "'-'", "'('", 
                                                             "')'" ];
 	public static readonly symbolicNames: (string | null)[] = [ null, null, 
+                                                             null, null, 
                                                              null, null, 
                                                              null, "FLOAT", 
                                                              "WS" ];
@@ -72,7 +76,7 @@ export default class LolParser extends Parser {
 				this.state = 7;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-			} while (_la===3 || _la===5);
+			} while (_la===5 || _la===7);
 			this.state = 9;
 			this.match(LolParser.EOF);
 			}
@@ -114,17 +118,17 @@ export default class LolParser extends Parser {
 			this.state = 17;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 3:
+			case 5:
 				{
 				this.state = 12;
-				this.match(LolParser.T__2);
+				this.match(LolParser.T__4);
 				this.state = 13;
 				this.expr(0);
 				this.state = 14;
-				this.match(LolParser.T__3);
+				this.match(LolParser.T__5);
 				}
 				break;
-			case 5:
+			case 7:
 				{
 				this.state = 16;
 				this.match(LolParser.FLOAT);
@@ -134,9 +138,9 @@ export default class LolParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			this._ctx.stop = this._input.LT(-1);
-			this.state = 24;
+			this.state = 27;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 2, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 3, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					if (this._parseListeners != null) {
@@ -144,30 +148,57 @@ export default class LolParser extends Parser {
 					}
 					_prevctx = localctx;
 					{
-					{
-					localctx = new ExprContext(this, _parentctx, _parentState);
-					this.pushNewRecursionContext(localctx, _startState, LolParser.RULE_expr);
-					this.state = 19;
-					if (!(this.precpred(this._ctx, 3))) {
-						throw this.createFailedPredicateException("this.precpred(this._ctx, 3)");
-					}
-					this.state = 20;
-					_la = this._input.LA(1);
-					if(!(_la===1 || _la===2)) {
-					this._errHandler.recoverInline(this);
-					}
-					else {
-						this._errHandler.reportMatch(this);
-					    this.consume();
-					}
-					this.state = 21;
-					this.expr(4);
+					this.state = 25;
+					this._errHandler.sync(this);
+					switch ( this._interp.adaptivePredict(this._input, 2, this._ctx) ) {
+					case 1:
+						{
+						localctx = new ExprContext(this, _parentctx, _parentState);
+						this.pushNewRecursionContext(localctx, _startState, LolParser.RULE_expr);
+						this.state = 19;
+						if (!(this.precpred(this._ctx, 4))) {
+							throw this.createFailedPredicateException("this.precpred(this._ctx, 4)");
+						}
+						this.state = 20;
+						_la = this._input.LA(1);
+						if(!(_la===1 || _la===2)) {
+						this._errHandler.recoverInline(this);
+						}
+						else {
+							this._errHandler.reportMatch(this);
+						    this.consume();
+						}
+						this.state = 21;
+						this.expr(5);
+						}
+						break;
+					case 2:
+						{
+						localctx = new ExprContext(this, _parentctx, _parentState);
+						this.pushNewRecursionContext(localctx, _startState, LolParser.RULE_expr);
+						this.state = 22;
+						if (!(this.precpred(this._ctx, 3))) {
+							throw this.createFailedPredicateException("this.precpred(this._ctx, 3)");
+						}
+						this.state = 23;
+						_la = this._input.LA(1);
+						if(!(_la===3 || _la===4)) {
+						this._errHandler.recoverInline(this);
+						}
+						else {
+							this._errHandler.reportMatch(this);
+						    this.consume();
+						}
+						this.state = 24;
+						this.expr(4);
+						}
+						break;
 					}
 					}
 				}
-				this.state = 26;
+				this.state = 29;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 2, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 3, this._ctx);
 			}
 			}
 		}
@@ -196,20 +227,23 @@ export default class LolParser extends Parser {
 	private expr_sempred(localctx: ExprContext, predIndex: number): boolean {
 		switch (predIndex) {
 		case 0:
+			return this.precpred(this._ctx, 4);
+		case 1:
 			return this.precpred(this._ctx, 3);
 		}
 		return true;
 	}
 
-	public static readonly _serializedATN: number[] = [4,1,6,28,2,0,7,0,2,1,
+	public static readonly _serializedATN: number[] = [4,1,8,31,2,0,7,0,2,1,
 	7,1,1,0,4,0,6,8,0,11,0,12,0,7,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,3,1,18,8,
-	1,1,1,1,1,1,1,5,1,23,8,1,10,1,12,1,26,9,1,1,1,0,1,2,2,0,2,0,1,1,0,1,2,28,
-	0,5,1,0,0,0,2,17,1,0,0,0,4,6,3,2,1,0,5,4,1,0,0,0,6,7,1,0,0,0,7,5,1,0,0,
-	0,7,8,1,0,0,0,8,9,1,0,0,0,9,10,5,0,0,1,10,1,1,0,0,0,11,12,6,1,-1,0,12,13,
-	5,3,0,0,13,14,3,2,1,0,14,15,5,4,0,0,15,18,1,0,0,0,16,18,5,5,0,0,17,11,1,
-	0,0,0,17,16,1,0,0,0,18,24,1,0,0,0,19,20,10,3,0,0,20,21,7,0,0,0,21,23,3,
-	2,1,4,22,19,1,0,0,0,23,26,1,0,0,0,24,22,1,0,0,0,24,25,1,0,0,0,25,3,1,0,
-	0,0,26,24,1,0,0,0,3,7,17,24];
+	1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,26,8,1,10,1,12,1,29,9,1,1,1,0,1,2,2,0,2,0,
+	2,1,0,1,2,1,0,3,4,32,0,5,1,0,0,0,2,17,1,0,0,0,4,6,3,2,1,0,5,4,1,0,0,0,6,
+	7,1,0,0,0,7,5,1,0,0,0,7,8,1,0,0,0,8,9,1,0,0,0,9,10,5,0,0,1,10,1,1,0,0,0,
+	11,12,6,1,-1,0,12,13,5,5,0,0,13,14,3,2,1,0,14,15,5,6,0,0,15,18,1,0,0,0,
+	16,18,5,7,0,0,17,11,1,0,0,0,17,16,1,0,0,0,18,27,1,0,0,0,19,20,10,4,0,0,
+	20,21,7,0,0,0,21,26,3,2,1,5,22,23,10,3,0,0,23,24,7,1,0,0,24,26,3,2,1,4,
+	25,19,1,0,0,0,25,22,1,0,0,0,26,29,1,0,0,0,27,25,1,0,0,0,27,28,1,0,0,0,28,
+	3,1,0,0,0,29,27,1,0,0,0,4,7,17,25,27];
 
 	private static __ATN: ATN;
 	public static get _ATN(): ATN {
