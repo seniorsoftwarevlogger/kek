@@ -1,0 +1,3 @@
+#!/bin/sh
+
+deno run -A --unstable-sloppy-imports compile.ts $1
